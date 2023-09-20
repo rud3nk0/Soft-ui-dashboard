@@ -23,6 +23,14 @@ use Illuminate\Support\Facades\Route;
 */
 
 
+//Google URL
+Route::prefix('google')->name('google.')->group( function (){
+    Route::get('login', [\App\Http\Controllers\GoogleController::class,
+        'loginWithGoogle'])->name('login');
+    Route::any('callback', [\App\Http\Controllers\GoogleController::class, 'callbackFromGoogle'])
+        ->name('callback');
+});
+
 Route::group(['middleware' => 'auth'], function () {
 
     Route::get('/', [HomeController::class, 'home']);
@@ -123,8 +131,6 @@ Route::group(['middleware' => 'auth'], function () {
         ->name('comments.destroy');
 
 
-
-
     Route::get('virtual-reality', function () {
 		return view('virtual-reality');
 	})->name('virtual-reality');
@@ -146,7 +152,6 @@ Route::group(['middleware' => 'auth'], function () {
 });
 
 
-
 Route::group(['middleware' => 'guest'], function () {
     Route::get('/register', [RegisterController::class, 'create']);
     Route::post('/register', [RegisterController::class, 'store']);
@@ -159,8 +164,11 @@ Route::group(['middleware' => 'guest'], function () {
 
 });
 
+
+
 Route::get('/login', function () {
     return view('session/login-session');
 })->name('login');
+
 
 

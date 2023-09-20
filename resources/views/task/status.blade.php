@@ -28,7 +28,7 @@
                                                             <form action="{{route('status.store')}}" method="post">
                                                                 @csrf
 
-                                                                <label for="name">Status Name</label>
+                                                                <label for="name">Name</label>
                                                                 <div class="input-group mb-3">
                                                                     <input type="text" name="name" id="name" class="form-control" placeholder="Name" aria-label="Name" aria-describedby="name-addon">
                                                                 </div>
@@ -36,11 +36,6 @@
                                                                 <label for="is_active">Is active</label>
                                                                 <div class="input-group mb-3">
                                                                     <input type="text" name="is_active" id="is_active" class="form-control" placeholder="Is active" aria-label="is_active" aria-describedby="is_active-addon">
-                                                                </div>
-
-                                                                <label for="progress">Progress</label>
-                                                                <div class="input-group mb-3">
-                                                                    <input type="text" name="progress" id="progress" class="form-control" placeholder="Progress" aria-label="progress" aria-describedby="progress-addon">
                                                                 </div>
 
                                                                 <div class="text-center">
@@ -62,7 +57,6 @@
                                     <thead>
                                     <tr>
                                         <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Status</th>
-                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-1">Is active</th>
                                         <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-1">Progress</th>
                                         <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-6">Action</th>
                                         <th></th>
@@ -73,17 +67,12 @@
                                         <tr>
                                             <td>
                                                 <div class="d-flex px-2">
-{{--                                                    <div>--}}
-{{--                                                        <img src="../assets/img/small-logos/logo-spotify.svg" class="avatar avatar-sm rounded-circle me-2" alt="spotify">--}}
-{{--                                                    </div>--}}
                                                     <div class="my-auto">
                                                         <h6 class="mb-0 text-sm">{{$status->name}}</h6>
                                                     </div>
                                                 </div>
                                             </td>
-                                            <td>
-                                                <p class="text-sm font-weight-bold mb-0">{{$status->is_active}}</p>
-                                            </td>
+
                                             <td>
                                                 <p class="text-sm font-weight-bold mb-0">{{$status->progress}} %</p>
                                             </td>
@@ -104,18 +93,10 @@
                                                                         <form action="{{ route('status.update', ['id' => $status->id]) }}" method="post">
                                                                             @csrf
                                                                             @method('put')
-
                                                                             <label for="status">Status name</label>
-                                                                            <select name="status" id="status" class="form-control">
-                                                                                <option value="Working">Working</option>
-                                                                                <option value="Done">Done</option>
-                                                                                <option value="Decline">Decline</option>
-                                                                            </select>
-
-{{--                                                                            <label for="status"></label>--}}
-{{--                                                                            <div class="input-group mb-3">--}}
-{{--                                                                                <input type="text" name="name" value="{{ old('name', $status->name) }}" id="name" class="form-control" placeholder="Status name" aria-label="Status name" aria-describedby="number_Card-addon">--}}
-{{--                                                                            </div>--}}
+                                                                            <div class="input-group mb-3">
+                                                                                <input type="text" name="name" value="{{ old('name', $status->name) }}" id="name" class="form-control" placeholder="Status name" aria-label="Status name" aria-describedby="number_Card-addon">
+                                                                            </div>
 
                                                                             <label for="is_active">Status is active</label>
                                                                             <div class="input-group mb-3">

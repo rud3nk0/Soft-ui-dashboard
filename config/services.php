@@ -30,4 +30,10 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'google' => [
+        'client_id' => '895350349204-kvlg6qq774krrnrni01np602rkm3o7st.apps.googleusercontent.com',
+        'client_secret' => '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',
+        'redirect' => 'http://127.0.0.1:8000/dashboard',
+    ]
+
 ];

@@ -7,7 +7,10 @@ use App\Http\Controllers\Controller;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image;
 
 class UserController extends Controller
 {
@@ -126,9 +129,8 @@ public function view($id)
         $userId->phone = $request->phone;
         $userId->location = $request->location;
         $userId->role = $request->role;
-//        if ($request->has('password')) {
-            $userId->password = $request->password;
-//        }
+        $userId->password = Hash::make($request->password);
+
         if ($request->hasFile('image')) {
             $imageName = time().'.'.$request->image->extension();
             $request->image->move(public_path('images'), $imageName);
